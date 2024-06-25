@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click the Button Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            margin-bottom: 2rem;
+        }
+        .game {
+            text-align: center;
+        }
+        .button {
+            padding: 1rem 2rem;
+            font-size: 1.5rem;
+            margin: 1rem 0;
+            cursor: pointer;
+        }
+        .score {
+            font-size: 1.2rem;
+            margin: 1rem 0;
+        }
+        .timer {
+            font-size: 1.2rem;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Click the Button Game</h1>
+    <div class="game">
+        <button class="button" onclick="clickButton()">Click Me!</button>
+        <div class="score">Score: <span id="score">0</span></div>
+        <div class="timer">Time Left: <span id="time">10</span> seconds</div>
+    </div>
+
+    <script>
+        let score = 0;
+        let timeLeft = 10;
+        let timer;
+
+        function clickButton() {
+            if (timeLeft > 0) {
+                score++;
+                document.getElementById('score').textContent = score;
+            }
+        }
+
+        function countdown() {
+            if (timeLeft > 0) {
+                timeLeft--;
+                document.getElementById('time').textContent = timeLeft;
+            } else {
+                clearInterval(timer);
+                alert('Game Over! Your score is ' + score);
+            }
+        }
+
+        timer = setInterval(countdown, 1000);
+    </script>
+</body>
+</html>
